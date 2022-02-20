@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "examplemod",
+  "version": "${version}",
+
+  "name": "Example Mod",
+  "description": "An example mod using the Mesh platform",
+  "authors": [
+    "Tigermouthbear",
+    "Makrennel"
+  ],
+  "contact": {
+    "homepage": "https://meshmc.net/"
+  },
+  "environment": "*",
+  "suggests": {
+    "flamingo": "*"
+  }
+}

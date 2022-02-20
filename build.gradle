@@ -1,0 +1,34 @@
+plugins {
+    id "java"
+}
+
+group "net.meshmc"
+version "1.0-SNAPSHOT"
+
+repositories {
+    mavenCentral()
+    maven {
+        name = "MeshMC"
+        url = "https://maven.meshmc.net"
+    }
+}
+
+dependencies {
+    implementation "net.meshmc:mesh-core:1.0-SNAPSHOT"
+    implementation "dev.tigr:simpleevents:1.2"
+    implementation "org.apache.logging.log4j:log4j-api:2.17.0"
+    implementation "com.google.guava:guava:31.0.1-jre"
+}
+
+processResources {
+    inputs.property "version", project.version
+
+    from(sourceSets.main.resources.srcDirs) {
+        duplicatesStrategy = DuplicatesStrategy.INCLUDE
+        expand "version": project.version
+    }
+
+    from(sourceSets.main.resources.srcDirs) {
+        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    }
+}
