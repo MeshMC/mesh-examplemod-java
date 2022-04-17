@@ -3,7 +3,7 @@ package net.meshmc.examplemod;
 import dev.tigr.simpleevents.listener.EventHandler;
 import dev.tigr.simpleevents.listener.EventListener;
 import net.meshmc.mesh.Mesh;
-import net.meshmc.mesh.event.events.render.HudRenderEvent;
+import net.meshmc.mesh.event.events.render.RenderEvent;
 import net.meshmc.mesh.util.render.Color;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -21,7 +21,7 @@ public class ExampleMod implements Mesh.Initializer {
     }
 
     @EventHandler
-    private final EventListener<HudRenderEvent> hudRenderEventListener = new EventListener<>(event -> {
+    private final EventListener<RenderEvent.Hud> hudRenderEventListener = new EventListener<>(event -> {
         MESH.getMinecraft().getTextRenderer().drawText("Hello " + MESH.getMinecraft().getSession().getUsername(), 0F, 0F, Color.WHITE);
     });
 }

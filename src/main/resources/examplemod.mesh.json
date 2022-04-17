@@ -1,0 +1,14 @@
+{
+  "id": "examplemod",
+  "name": "Example Mod",
+  "version": "${version}",
+  "description": "An example mod using the Mesh platform",
+  "website": "https://meshmc.net/",
+  "authors": [
+    "Tigermouthbear",
+    "Makrennel"
+  ],
+  "initializers": [
+    "net.meshmc.examplemod.ExampleMod"
+  ]
+}
