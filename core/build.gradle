@@ -1,9 +1,5 @@
-plugins {
-    id "java"
-}
-
-group = project.maven_group
-version = project.mod_version
+group = project.mavenGroup
+version = project.modVersion
 archivesBaseName = project.modid + "-" + project.name
 
 repositories {
@@ -15,7 +11,6 @@ repositories {
 }
 
 dependencies {
-    implementation "net.meshmc:mesh-loader:$loader_version"
     implementation "org.apache.logging.log4j:log4j-api:2.17.0"
     implementation "com.google.guava:guava:31.0.1-jre"
 }

@@ -1,4 +1,4 @@
-package net.meshmc.examplemod.impl.mixins;
+package net.meshmc.examplemod.mixins;
 
 import net.meshmc.examplemod.ExampleMod;
 import net.minecraft.client.MinecraftClient;
