@@ -10,5 +10,11 @@
   ],
   "initializers": [
     "net.meshmc.examplemod.ExampleMod"
+  ],
+  "interfaces": [
+    "net.meshmc.examplemod.impl"
+  ],
+  "mixins": [
+    "examplemod.mixins.json"
   ]
 }

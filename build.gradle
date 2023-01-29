@@ -2,33 +2,47 @@ plugins {
     id "java"
 }
 
-group "net.meshmc"
-version "1.0-SNAPSHOT"
+group = project.maven_group
+version = project.mod_version
+archivesBaseName = project.modid
 
-repositories {
-    mavenCentral()
-    maven {
-        name = "MeshMC"
-        url = "https://maven.meshmc.net"
+allprojects {
+    repositories {
+        mavenCentral()
+        maven {
+            name = "MeshMC"
+            url = "https://maven.meshmc.net"
+        }
+        maven {
+            name = "Fabric"
+            url = "https://maven.fabricmc.net/"
+        }
     }
+}
+
+configurations {
+    embeddedLibs
+    embeddedJars
 }
 
 dependencies {
-    implementation "net.meshmc:mesh-core:1.0-SNAPSHOT"
-    implementation "dev.tigr:simpleevents:1.3"
-    implementation "org.apache.logging.log4j:log4j-api:2.17.0"
-    implementation "com.google.guava:guava:31.0.1-jre"
+    embeddedLibs(project(":core")) {
+        transitive = false
+    }
+
+    subprojects.forEach {
+        if(it.name.matches("v[0-9]+_[0-9]+_([0-9]+|x)")) embeddedJars(it) {
+            transitive = false
+        }
+    }
 }
 
-processResources {
-    inputs.property "version", project.version
-
-    from(sourceSets.main.resources.srcDirs) {
-        duplicatesStrategy = DuplicatesStrategy.INCLUDE
-        expand "version": project.version
-    }
-
-    from(sourceSets.main.resources.srcDirs) {
+jar {
+    from {
         duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+        configurations.embeddedLibs.collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
     }
+    from(configurations.embeddedJars)
 }
